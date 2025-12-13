@@ -351,4 +351,3 @@ Vision model comparison for autonomous vehicles and future underwater robotics (
 
 ---
 
-**Ready to push to GitHub!**
