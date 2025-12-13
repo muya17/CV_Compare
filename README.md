@@ -349,5 +349,3 @@ Vision model comparison for autonomous vehicles and future underwater robotics (
 - [Underwater Robotics & Vision](https://ieeexplore.ieee.org/document/8911813)
   - Dudek, G., Jenkin, M., Prahacs, C., et al. (2007). A visually guided swimming robot. IROS.
 
----
-
