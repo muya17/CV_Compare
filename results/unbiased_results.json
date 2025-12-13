@@ -1,0 +1,515 @@
+{
+  "COCO": {
+    "HOG": {
+      "COCO_01.jpg": 0,
+      "COCO_02.jpg": 0,
+      "COCO_03.jpg": 1,
+      "COCO_04.jpg": 1,
+      "COCO_05.jpg": 0,
+      "COCO_06.jpg": 0,
+      "COCO_07.jpg": 0,
+      "COCO_08.jpg": 0,
+      "COCO_09.jpg": 0,
+      "COCO_10.jpg": 0
+    },
+    "YOLO": {
+      "COCO_01.jpg": {
+        "person": 2,
+        "remote": 1,
+        "couch": 2
+      },
+      "COCO_02.jpg": {
+        "clock": 1,
+        "person": 4
+      },
+      "COCO_03.jpg": {
+        "person": 10,
+        "apple": 4
+      },
+      "COCO_04.jpg": {
+        "person": 3,
+        "snowboard": 2
+      },
+      "COCO_05.jpg": {
+        "person": 1,
+        "teddy bear": 2
+      },
+      "COCO_06.jpg": {
+        "person": 1
+      },
+      "COCO_07.jpg": {
+        "person": 2,
+        "tv": 1,
+        "refrigerator": 1
+      },
+      "COCO_08.jpg": {
+        "mouse": 1,
+        "laptop": 4,
+        "keyboard": 2,
+        "person": 1
+      },
+      "COCO_09.jpg": {
+        "person": 1
+      },
+      "COCO_10.jpg": {
+        "person": 1,
+        "pizza": 2,
+        "chair": 1,
+        "dining table": 1,
+        "handbag": 1
+      }
+    },
+    "DeepLabV3": {
+      "COCO_01.jpg": {
+        "background": 222615,
+        "person": 81577,
+        "sofa": 3008
+      },
+      "COCO_02.jpg": {
+        "background": 272452,
+        "person": 188
+      },
+      "COCO_03.jpg": {
+        "background": 192571,
+        "person": 114629
+      },
+      "COCO_04.jpg": {
+        "background": 253403,
+        "person": 37
+      },
+      "COCO_05.jpg": {
+        "background": 189425,
+        "person": 2575
+      },
+      "COCO_06.jpg": {
+        "background": 166801,
+        "person": 106479
+      },
+      "COCO_07.jpg": {
+        "background": 194357,
+        "bottle": 556,
+        "person": 87820,
+        "tvmonitor": 24467
+      },
+      "COCO_08.jpg": {
+        "background": 300517,
+        "person": 6683
+      },
+      "COCO_09.jpg": {
+        "background": 266460,
+        "person": 40740
+      },
+      "COCO_10.jpg": {
+        "background": 255918,
+        "chair": 2724,
+        "person": 48558
+      }
+    },
+    "UNet": {
+      "COCO_01.jpg": {
+        "class_7": 3739,
+        "class_10": 262610,
+        "class_19": 40813,
+        "class_20": 38
+      },
+      "COCO_02.jpg": {},
+      "COCO_03.jpg": {
+        "class_7": 9303,
+        "class_10": 232667,
+        "class_19": 65173,
+        "class_20": 57
+      },
+      "COCO_04.jpg": {
+        "class_7": 3433,
+        "class_10": 157210,
+        "class_19": 92768,
+        "class_20": 29
+      },
+      "COCO_05.jpg": {
+        "class_7": 3336,
+        "class_10": 153849,
+        "class_19": 34799,
+        "class_20": 16
+      },
+      "COCO_06.jpg": {},
+      "COCO_07.jpg": {
+        "class_7": 3372,
+        "class_10": 265090,
+        "class_19": 38737,
+        "class_20": 1
+      },
+      "COCO_08.jpg": {
+        "class_7": 5161,
+        "class_10": 231901,
+        "class_19": 70044,
+        "class_20": 94
+      },
+      "COCO_09.jpg": {
+        "class_7": 2144,
+        "class_10": 299508,
+        "class_19": 5539,
+        "class_20": 9
+      },
+      "COCO_10.jpg": {
+        "class_7": 5351,
+        "class_10": 217195,
+        "class_19": 84623,
+        "class_20": 31
+      }
+    }
+  },
+  "NightTime": {
+    "HOG": {
+      "NightTime_01.jpg": 0,
+      "NightTime_02.jpg": 0,
+      "NightTime_03.jpg": 1,
+      "NightTime_04.jpg": 1,
+      "NightTime_05.jpg": 1,
+      "NightTime_06.jpg": 0,
+      "NightTime_07.jpg": 1,
+      "NightTime_08.jpg": 2,
+      "NightTime_09.jpg": 0,
+      "NightTime_10.jpg": 0
+    },
+    "YOLO": {
+      "NightTime_01.jpg": {},
+      "NightTime_02.jpg": {},
+      "NightTime_03.jpg": {
+        "person": 3
+      },
+      "NightTime_04.jpg": {},
+      "NightTime_05.jpg": {
+        "person": 2
+      },
+      "NightTime_06.jpg": {
+        "person": 1
+      },
+      "NightTime_07.jpg": {},
+      "NightTime_08.jpg": {
+        "person": 2
+      },
+      "NightTime_09.jpg": {},
+      "NightTime_10.jpg": {}
+    },
+    "DeepLabV3": {
+      "NightTime_01.jpg": {},
+      "NightTime_02.jpg": {},
+      "NightTime_03.jpg": {},
+      "NightTime_04.jpg": {},
+      "NightTime_05.jpg": {},
+      "NightTime_06.jpg": {},
+      "NightTime_07.jpg": {},
+      "NightTime_08.jpg": {},
+      "NightTime_09.jpg": {},
+      "NightTime_10.jpg": {}
+    },
+    "UNet": {
+      "NightTime_01.jpg": {},
+      "NightTime_02.jpg": {},
+      "NightTime_03.jpg": {},
+      "NightTime_04.jpg": {},
+      "NightTime_05.jpg": {
+        "class_7": 1996,
+        "class_10": 1367121,
+        "class_19": 13279,
+        "class_20": 4
+      },
+      "NightTime_06.jpg": {},
+      "NightTime_07.jpg": {},
+      "NightTime_08.jpg": {
+        "class_7": 2352,
+        "class_10": 1314851,
+        "class_19": 65170,
+        "class_20": 27
+      },
+      "NightTime_09.jpg": {},
+      "NightTime_10.jpg": {
+        "class_7": 2779,
+        "class_10": 1309066,
+        "class_19": 70551,
+        "class_20": 4
+      }
+    }
+  },
+  "Underwater": {
+    "HOG": {
+      "Underwater_01.jpg": 0,
+      "Underwater_02.jpg": 0,
+      "Underwater_03.jpg": 0,
+      "Underwater_04.jpg": 0,
+      "Underwater_05.jpg": 0,
+      "Underwater_06.jpg": 2,
+      "Underwater_07.jpg": 0,
+      "Underwater_08.jpg": 0,
+      "Underwater_09.jpg": 1,
+      "Underwater_10.jpg": 0
+    },
+    "YOLO": {
+      "Underwater_01.jpg": {
+        "person": 1,
+        "surfboard": 1
+      },
+      "Underwater_02.jpg": {},
+      "Underwater_03.jpg": {},
+      "Underwater_04.jpg": {
+        "sports ball": 2,
+        "teddy bear": 1
+      },
+      "Underwater_05.jpg": {
+        "surfboard": 1
+      },
+      "Underwater_06.jpg": {
+        "person": 3
+      },
+      "Underwater_07.jpg": {
+        "person": 1
+      },
+      "Underwater_08.jpg": {},
+      "Underwater_09.jpg": {
+        "bear": 1
+      },
+      "Underwater_10.jpg": {
+        "kite": 1,
+        "bird": 1
+      }
+    },
+    "DeepLabV3": {
+      "Underwater_01.jpg": {
+        "background": 282812,
+        "person": 24388
+      },
+      "Underwater_02.jpg": {},
+      "Underwater_03.jpg": {},
+      "Underwater_04.jpg": {
+        "background": 253036,
+        "person": 54164
+      },
+      "Underwater_05.jpg": {
+        "background": 226164,
+        "boat": 3199,
+        "person": 1037
+      },
+      "Underwater_06.jpg": {
+        "background": 452403,
+        "person": 65997
+      },
+      "Underwater_07.jpg": {
+        "background": 306273,
+        "person": 927
+      },
+      "Underwater_08.jpg": {
+        "background": 294879,
+        "person": 66,
+        "tvmonitor": 12255
+      },
+      "Underwater_09.jpg": {},
+      "Underwater_10.jpg": {}
+    },
+    "UNet": {
+      "Underwater_01.jpg": {
+        "class_7": 9511,
+        "class_10": 180593,
+        "class_19": 117086,
+        "class_20": 10
+      },
+      "Underwater_02.jpg": {
+        "class_7": 3482,
+        "class_10": 257730,
+        "class_19": 45986,
+        "class_20": 2
+      },
+      "Underwater_03.jpg": {
+        "class_7": 778,
+        "class_10": 257880,
+        "class_19": 48541,
+        "class_20": 1
+      },
+      "Underwater_04.jpg": {
+        "class_7": 16151,
+        "class_10": 222479,
+        "class_19": 68516,
+        "class_20": 54
+      },
+      "Underwater_05.jpg": {
+        "class_7": 1089,
+        "class_10": 123983,
+        "class_19": 105327,
+        "class_20": 1
+      },
+      "Underwater_06.jpg": {
+        "class_7": 1346,
+        "class_10": 504984,
+        "class_19": 12069,
+        "class_20": 1
+      },
+      "Underwater_07.jpg": {
+        "class_7": 9653,
+        "class_10": 236411,
+        "class_19": 61130,
+        "class_20": 6
+      },
+      "Underwater_08.jpg": {
+        "class_7": 14564,
+        "class_10": 196866,
+        "class_19": 95749,
+        "class_20": 21
+      },
+      "Underwater_09.jpg": {
+        "class_7": 13897,
+        "class_10": 254753,
+        "class_19": 38535,
+        "class_20": 15
+      },
+      "Underwater_10.jpg": {
+        "class_7": 3195,
+        "class_10": 288530,
+        "class_19": 15474,
+        "class_20": 1
+      }
+    }
+  },
+  "CityScapes": {
+    "HOG": {
+      "CityScapes_01.jpg": 0,
+      "CityScapes_02.jpg": 0,
+      "CityScapes_03.jpg": 0,
+      "CityScapes_04.jpg": 0,
+      "CityScapes_05.jpg": 0,
+      "CityScapes_06.jpg": 0,
+      "CityScapes_07.jpg": 0,
+      "CityScapes_08.jpg": 0,
+      "CityScapes_09.jpg": 0,
+      "CityScapes_10.jpg": 0
+    },
+    "YOLO": {
+      "CityScapes_01.jpg": {
+        "person": 7,
+        "car": 1
+      },
+      "CityScapes_02.jpg": {
+        "car": 3,
+        "truck": 1,
+        "bus": 1
+      },
+      "CityScapes_03.jpg": {
+        "person": 5,
+        "car": 1,
+        "truck": 1,
+        "bus": 1
+      },
+      "CityScapes_04.jpg": {
+        "potted plant": 1
+      },
+      "CityScapes_05.jpg": {
+        "bus": 1,
+        "car": 3,
+        "truck": 1
+      },
+      "CityScapes_06.jpg": {
+        "car": 3,
+        "person": 1
+      },
+      "CityScapes_07.jpg": {
+        "truck": 1,
+        "car": 3
+      },
+      "CityScapes_08.jpg": {
+        "person": 7
+      },
+      "CityScapes_09.jpg": {
+        "car": 4
+      },
+      "CityScapes_10.jpg": {}
+    },
+    "DeepLabV3": {
+      "CityScapes_01.jpg": {
+        "background": 21986,
+        "person": 2590
+      },
+      "CityScapes_02.jpg": {},
+      "CityScapes_03.jpg": {
+        "background": 22448,
+        "car": 1679,
+        "person": 449
+      },
+      "CityScapes_04.jpg": {},
+      "CityScapes_05.jpg": {
+        "background": 22333,
+        "bus": 2243
+      },
+      "CityScapes_06.jpg": {
+        "background": 22712,
+        "car": 1864
+      },
+      "CityScapes_07.jpg": {},
+      "CityScapes_08.jpg": {
+        "background": 19451,
+        "person": 5125
+      },
+      "CityScapes_09.jpg": {},
+      "CityScapes_10.jpg": {}
+    },
+    "UNet": {
+      "CityScapes_01.jpg": {
+        "class_7": 1263,
+        "class_10": 20048,
+        "class_19": 3249,
+        "class_20": 16
+      },
+      "CityScapes_02.jpg": {
+        "class_7": 739,
+        "class_10": 21902,
+        "class_19": 1934,
+        "class_20": 1
+      },
+      "CityScapes_03.jpg": {
+        "class_7": 637,
+        "class_10": 23246,
+        "class_19": 691,
+        "class_20": 2
+      },
+      "CityScapes_04.jpg": {
+        "class_7": 532,
+        "class_10": 23170,
+        "class_19": 872,
+        "class_20": 2
+      },
+      "CityScapes_05.jpg": {
+        "class_7": 760,
+        "class_10": 22588,
+        "class_19": 1223,
+        "class_20": 5
+      },
+      "CityScapes_06.jpg": {
+        "class_7": 1430,
+        "class_10": 20156,
+        "class_19": 2979,
+        "class_20": 11
+      },
+      "CityScapes_07.jpg": {
+        "class_7": 1036,
+        "class_10": 20657,
+        "class_19": 2879,
+        "class_20": 4
+      },
+      "CityScapes_08.jpg": {
+        "class_7": 572,
+        "class_10": 23429,
+        "class_19": 574,
+        "class_20": 1
+      },
+      "CityScapes_09.jpg": {
+        "class_7": 574,
+        "class_10": 23441,
+        "class_19": 560,
+        "class_20": 1
+      },
+      "CityScapes_10.jpg": {
+        "class_7": 739,
+        "class_10": 22184,
+        "class_19": 1646,
+        "class_20": 7
+      }
+    }
+  }
+}
