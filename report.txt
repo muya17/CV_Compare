@@ -1,0 +1,92 @@
+Comprehensive Project Report (For Presentation)
+=============================================
+
+1. Goal and Context
+-------------------
+We need a vision stack that works across difficult conditions: daytime urban driving, nighttime driving, and underwater scenes for a future FishBot. We evaluated four approaches—HOG (classical), YOLO v8 nano (bounding boxes), DeepLabV3 (semantic segmentation), and UNet (semantic segmentation, untrained baseline)—to decide what to deploy now for driving and what to build for underwater/FPGA later.
+
+2. Datasets and Why They Matter
+--------------------------------
+We chose four reputable, diverse datasets to stress different conditions:
+- COCO (https://cocodataset.org/): A large, widely-used benchmark with 330K+ images, 80 object classes. It tests general object robustness and is a gold standard for detectors.
+- CityScapes (https://www.cityscapes-dataset.com/): High-quality urban daytime driving scenes with pixel-level labels; standard for autonomous driving research.
+- NightTime Driving (Kaggle: https://www.kaggle.com/datasets/adembakrc/nighttime-driving): Challenging low-light driving. Chosen to expose how models degrade at night.
+- Underwater / SUIM-like (https://github.com/NileshKulkarni/suim): Domain-shift to underwater color/texture and backscatter; relevant for FishBot segmentation.
+
+We intentionally sampled a very small subset—10 images per dataset (40 total)—as a fast, indicative sanity check. Full datasets are huge; this subset is meant to quickly reveal strengths/weaknesses across domains. For production or publication-level claims, you should test on 100–1000+ images per domain.
+
+3. How We Handle Data (Sampling)
+---------------------------------
+Images are not stored in git. After you download the four datasets locally, you generate a small test set:
+
+```
+python core/sample_datasets.py \
+  --city "<path to CityScapes images>" \
+  --night "<path to NightTime images>" \
+  --underwater "<path to Underwater images>" \
+  --coco "<path to COCO images>" \
+  --num 10
+```
+
+- This creates test_datasets/ with N images per dataset (default 10). 
+- Increase --num (e.g., 100–1000) for more representative results.
+- The script clears old samples each run so you always know what was tested.
+
+4. Environment and Dependencies
+-------------------------------
+- Python 3.8+ recommended.
+- Create a virtual environment:
+  - Windows: python -m venv venv && venv\Scripts\Activate.ps1
+  - Linux/Mac: python -m venv venv && source venv/bin/activate
+- Install: pip install -r requirements.txt
+- Key packages: torch, torchvision, ultralytics (YOLO), opencv-python, matplotlib, numpy, Pillow.
+
+5. How to Run
+-------------
+1) (Optional) Resample as above.
+2) Run the comparison:
+```
+python core/unbiased_full.py
+```
+Outputs: results/unbiased_results.json (raw detections/segmentations) + console logs.
+3) Make the plot and summary table:
+```
+python utils/visualize_results.py
+```
+Outputs: results/model_performance.png + console table.
+
+6. What We Observed (Small-Subset Results)
+-----------------------------------------
+- YOLO v8 nano: Best overall. Robust across domains (100% COCO, 90% CityScapes, 40% NightTime, 70% Underwater on the 40-image slice). Fast and suitable for embedded.
+- DeepLabV3: Strong in daytime (100% COCO, 50% CityScapes) but collapses at night (0% NightTime). Slower on CPU (~500 ms/image).
+- HOG: Very weak; essentially unusable for driving scenes (0% CityScapes).
+- UNet: Currently untrained (random outputs), so its scores are meaningless. Its value is in the architecture for future training/deployment.
+
+7. Why Keep Semantic Segmentation (UNet/DeepLabV3) When YOLO Is Strong?
+-----------------------------------------------------------------------
+- Pixel-level understanding: Segmentation labels every pixel; good for thin/irregular objects, occlusions, and free-space estimation.
+- Boundary precision: Helps in clutter, glare, rain, fog, or turbidity where boxes get noisy.
+- Domain adaptation: Encoder–decoder models fine-tune well on domain data (e.g., SUIM) to learn underwater color/texture cues.
+- Fusion-friendly: Masks combine naturally with LiDAR/sonar depth for obstacle maps and planning.
+- FPGA suitability: UNet-style models are small, regular conv nets that quantize cleanly (INT8) and map well to Pynq.
+
+8. Why YOLO for Driving Now; UNet for Underwater Later
+-----------------------------------------------------
+- YOLO today: Already robust across varied driving conditions and fast; best near-term choice for autonomous driving.
+- UNet later: Once trained on underwater data (e.g., SUIM), it can provide pixel-level masks for FishBot. Its compact, regular structure is ideal for quantization and Pynq FPGA deployment (<100 ms/frame target at 640x480).
+
+9. Data Handling and Reproducibility
+------------------------------------
+- Sampling uses seed 42 for reproducibility.
+- test_datasets/ is generated locally; not tracked in git.
+- Full raw outputs are in results/unbiased_results.json; the comparison plot is in results/model_performance.png.
+
+10. LiDAR Pairing (Side Note)
+------------------------------
+- Vision-first approach. LiDAR can be paired for depth/obstacle checks in low-visibility or turbid conditions. Segmentation masks fuse well with range data for safer navigation.
+
+11. Next Steps
+--------------
+- Train UNet on SUIM (or similar) for underwater segmentation; measure mIoU and latency.
+- Quantize YOLO and trained UNet (INT8) for Pynq FPGA; target <100 ms/frame.
+- Expand tests to larger samples (100–1000+ images per domain) and real driving/underwater footage.

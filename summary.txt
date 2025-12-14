@@ -1,0 +1,74 @@
+Comprehensive Project Summary (CV_Compare)
+========================================
+
+1) What this project is about
+- We compare four vision approaches for challenging environments (daytime driving, nighttime driving, underwater) with the goal of choosing a robust detector/segmenter for autonomous driving now and an underwater robot (FishBot) later.
+- Models: HOG (classical), YOLO v8 nano (bounding boxes), DeepLabV3 (semantic segmentation), UNet (semantic segmentation, currently untrained).
+- Datasets: COCO (general), CityScapes (daytime urban driving), NightTime (nighttime driving), Underwater (SUIM-like). We test on a small, representative slice.
+
+2) How we got and used the datasets
+- Sources:
+  - COCO: https://cocodataset.org/
+  - CityScapes: https://www.cityscapes-dataset.com/
+  - NightTime Driving: https://www.kaggle.com/datasets/adembakrc/nighttime-driving
+  - Underwater (SUIM): https://github.com/NileshKulkarni/suim
+- We do NOT store images in git. After you download the datasets locally, run the sampling script to create a small test set:
+  - Command:
+    python core/sample_datasets.py \
+      --city "<path to CityScapes images>" \
+      --night "<path to NightTime images>" \
+      --underwater "<path to Underwater images>" \
+      --coco "<path to COCO images>" \
+      --num 10
+  - This builds test_datasets/ with 10 images per dataset (you can increase --num to 100–1000 for more rigorous checks).
+- The small 40-image slice is intentional: fast sanity-checking across domains to expose strengths/weaknesses without downloading/processing full datasets.
+
+3) Environment and dependencies
+- Python 3.8+ recommended.
+- Create a virtual environment:
+  python -m venv venv
+  source venv/Scripts/Activate.ps1    # Windows
+  # or source venv/bin/activate       # Linux/Mac
+- Install required packages:
+  pip install -r requirements.txt
+- Key libs: torch, torchvision, ultralytics (YOLO), opencv-python, matplotlib, numpy, Pillow.
+
+4) How to run
+- (Optional) Resample after downloading datasets:
+  python core/sample_datasets.py --city "..." --night "..." --underwater "..." --coco "..." --num 10
+- Run the full comparison (4 models x 4 datasets):
+  python core/unbiased_full.py
+  Outputs: results/unbiased_results.json and console logs.
+- Generate the performance plot:
+  python utils/visualize_results.py
+  Outputs: results/model_performance.png and a summary table in the console.
+
+5) What we observed (small-sample results)
+- YOLO v8 nano: Best overall; robust across conditions (100% COCO, 90% CityScapes, 40% NightTime, 70% Underwater in our 40-image slice); fast and suitable for embedded.
+- DeepLabV3: Strong in daytime (100% COCO, 50% CityScapes) but fails at night (0% NightTime); slower on CPU (~500 ms/image).
+- HOG: Very weak; not suitable for driving scenes (0% CityScapes).
+- UNet: Currently untrained (random outputs), so its scores are meaningless; but the architecture is lightweight and FPGA-friendly.
+
+6) Why consider semantic segmentation (UNet/DeepLabV3) when YOLO is strong?
+- Pixel-level understanding: masks capture shape and extent, not just box locations—useful for thin/irregular objects, occlusions, and free-space estimation.
+- Boundary precision: helps in clutter, glare, or turbidity (underwater) where boxes can be noisy.
+- Domain adaptation: encoder–decoder models fine-tune well on domain data (e.g., SUIM) to learn underwater color/texture cues.
+- Fusion: pixel masks combine naturally with LiDAR/sonar depth for obstacle maps and planning.
+- FPGA suitability: UNet-style models have regular conv blocks, quantize cleanly (INT8), and map well to Pynq.
+
+7) Why YOLO for driving now, UNet for underwater later
+- YOLO is already robust across varied driving conditions and runs fast; it is the pragmatic choice for autonomous driving today.
+- UNet, once trained on underwater data (e.g., SUIM), can deliver pixel-level segmentation for FishBot. Its small, regular structure is a good fit for Pynq FPGA deployment after quantization.
+
+8) Data handling and reproducibility
+- Sampling uses a fixed seed (42) for reproducibility.
+- test_datasets/ is regenerated locally; not tracked in git.
+- All raw detections are stored in results/unbiased_results.json; the plot is in results/model_performance.png.
+
+9) LiDAR pairing (side note)
+- Vision-first approach; LiDAR can be paired for depth/obstacle checks in low-visibility or turbid conditions. Segmentation masks fuse well with range data for safer navigation.
+
+10) Next steps
+- Train UNet on SUIM (or similar) for underwater segmentation; evaluate mIoU and latency.
+- Quantize YOLO and trained UNet (INT8) for Pynq FPGA; target <100 ms/frame at 640x480.
+- Expand testing to larger samples (100–1000 images per domain) and real driving/underwater footage.

@@ -207,7 +207,7 @@ This evaluation uses **only 10 images per dataset (40 total)** — a small repre
 2. **CityScapes** — Urban driving (daytime, good lighting)
    - Source: [CityScapes Dataset](https://www.cityscapes-dataset.com/)
 3. **NightTime** — Nighttime driving (challenging lighting)
-   - Source: Custom nighttime driving dataset
+  - Source: [NightTime Driving (Kaggle)](https://www.kaggle.com/datasets/adembakrc/nighttime-driving)
 4. **Underwater** — Underwater scenes (domain shift)
    - Source: [SUIM Dataset](https://github.com/NileshKulkarni/suim)
 

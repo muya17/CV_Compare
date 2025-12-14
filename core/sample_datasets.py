@@ -8,6 +8,7 @@ Datasets:
 """
 
 import shutil
+import argparse
 from pathlib import Path
 
 
@@ -43,32 +44,40 @@ def copy_n_images(src_dir, target_dir, prefix, n=10):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Sample N images from four datasets into test_datasets/")
+    parser.add_argument("--city", default="C:/Users/User/Documents/CityU/Coursework/Year 3/Sem A/EE3070/data/DataSet/val/img", help="Path to CityScapes images")
+    parser.add_argument("--night", default="C:/Users/User/Documents/CityU/Coursework/Year 3/Sem A/EE3070/data/night_dataseet/nighttime_driving_dataset", help="Path to NightTime images")
+    parser.add_argument("--underwater", default="C:/Users/User/Documents/CityU/Coursework/Year 3/Sem A/EE3070/data/under_water/TEST/images", help="Path to Underwater images")
+    parser.add_argument("--coco", default="C:/Users/User/Documents/CityU/Coursework/Year 3/Sem A/EE3070/data/coco/coco", help="Path to COCO images")
+    parser.add_argument("-n", "--num", type=int, default=10, help="Number of images per dataset")
+    args = parser.parse_args()
+
     print("="*70)
     print("SAMPLING FROM 4 DATASETS")
     print("="*70 + "\n")
-    
+
     datasets = {
-        "CityScapes": "C:\\Users\\User\\Documents\\CityU\\Coursework\\Year 3\\Sem A\\EE3070\\data\\DataSet\\val\\img",
-        "NightTime": "C:\\Users\\User\\Documents\\CityU\\Coursework\\Year 3\\Sem A\\EE3070\\data\\night_dataseet\\nighttime_driving_dataset",
-        "Underwater": "C:\\Users\\User\\Documents\\CityU\\Coursework\\Year 3\\Sem A\\EE3070\\data\\under_water\\TEST\\images",
-        "COCO": "C:\\Users\\User\\Documents\\CityU\\Coursework\\Year 3\\Sem A\\EE3070\\data\\coco\\coco",
+        "CityScapes": args.city,
+        "NightTime": args.night,
+        "Underwater": args.underwater,
+        "COCO": args.coco,
     }
-    
+
     test_base = Path("test_datasets")
     test_base.mkdir(exist_ok=True)
-    
+
     for name, src_path in datasets.items():
         target_dir = test_base / name
         print(f"📂 {name}")
         print(f"   From: {src_path}")
-        
-        count = copy_n_images(src_path, target_dir, name.lower(), n=10)
+
+        count = copy_n_images(src_path, target_dir, name.lower(), n=args.num)
         print(f"   ✓ Copied {count} images to {target_dir}\n")
-    
+
     print("="*70)
     print(f"✅ All datasets sampled. Folder: {test_base}")
     print("="*70)
-    print("\nNext: python test_models_unbiased.py")
+    print("\nNext: python core/unbiased_full.py")
 
 
 if __name__ == "__main__":
